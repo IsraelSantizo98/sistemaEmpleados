@@ -25,7 +25,7 @@ class EmpleadoController extends Controller
      */
     public function create()
     {
-        //
+        //Crea los datos a enviar
         return view('empleado.create');
     }
 
@@ -37,7 +37,9 @@ class EmpleadoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //Accde a la base de datos
+        $datosEmpleado = request()->all();
+        return response()->json($datosEmpleado);
     }
 
     /**

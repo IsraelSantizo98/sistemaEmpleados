@@ -1,4 +1,5 @@
-<form action="" method="post" enctype="multipart/form-data" >
+<form action="{{ url('/empleado') }}" method="post" enctype="multipart/form-data" >
+    @csrf <!-- LLave de seguridad o token al enviar datos -->
     <label for="Nombre">Nombre</label>
     <input type="text" name="Nombre" id="Nombre">
     <br>
