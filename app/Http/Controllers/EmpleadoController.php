@@ -37,8 +37,15 @@ class EmpleadoController extends Controller
      */
     public function store(Request $request)
     {
-        //Accde a la base de datos
-        $datosEmpleado = request()->all();
+        //Nos muestra todos los atributos al presionar el boton enviar en el formulario
+        //$datosEmpleado = request()->all();
+        //return response()->json($datosEmpleado);
+        $datosEmpleado = request()->except('_token'); //Escogemos que mostrar en este caso eliminamos el token, ya que obtiene todos los datos
+        if($request->hasFile('Foto')){//'Foto es el id en el formulario'
+            //Si existe una foto se altera, se usa el nombre del campo y se inserta en public uploads
+            $datosEmpleado['Foto']=$request->file('Foto')->store('uploads', 'public');
+        }
+        Empleado::insert($datosEmpleado); //Tomar los datos que no esten excluidos
         return response()->json($datosEmpleado);
     }
 
